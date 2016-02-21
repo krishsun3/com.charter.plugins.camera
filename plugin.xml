@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.charter.plugins.camera"
+    version="1.1">
+
+    <name>Custom Camera</name>
+    <description>Custom Camera Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>custom,camera</keywords>
+
+<engines>
+    <engine name="cordova" version=">=3.4.0" />
+</engines>
+
+<asset src="www/customcamera.js" target="js/customcamera.js"/>
+
+<js-module src="www/customcamera.js" name="customCamera">
+    <clobbers target="navigator.customCamera" />
+</js-module>
+
+
+
+<platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+        <feature name="CustomCamera">
+            <param name="android-package" value="com.performanceactive.plugins.camera.CustomCamera"/>
+        </feature>
+    </config-file>
+    <config-file target="AndroidManifest.xml" parent="/*">
+        <uses-permission android:name="android.permission.CAMERA" />
+        <uses-feature android:name="android.hardware.camera" />
+		<uses-feature android:name="android.hardware.camera.autofocus" />
+		<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    </config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+        <activity android:name="com.performanceactive.plugins.camera.CameraPreview" android:screenOrientation="landscape" android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+    </config-file>
+    <source-file src="src/android/CustomCamera.java" target-dir="src/com/performanceactive/plugins/camera" />      
+    <source-file src="src/android/CameraPreview.java" target-dir="src/com/performanceactive/plugins/camera" />
+    <source-file src="src/android/Preview.java" target-dir="src/com/performanceactive/plugins/camera" />
+    <source-file src="src/android/TouchView.java" target-dir="src/com/performanceactive/plugins/camera" />
+    <source-file src="src/android/Wait.java" target-dir="src/com/performanceactive/plugins/camera" />
+
+
+</platform>
+
+</plugin>
